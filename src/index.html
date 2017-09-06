@@ -8,20 +8,51 @@
     <div id="centerise">
 	    <div id="header">
 	      <h1>Fastly JSON Log Creator</h1>
+      </div>
+      <div id="intro">
 	      <p>This page can be used to create and modify JSON log lines for services such as
 	         Splunk, Sumologic, Big Query.</p>
-	      <p>This is not an official Fastly tool and comes with no guarantee or support. Use entirely at your own risk.</p>
+	      <p>This is not an official Fastly tool and comes with no guarantee or support. <span id="emphasis">Use entirely at your own risk.</span></p>
 	    </div>
-	    <div id="main_body">
-        <div id="standard-fields">
+      <div id="form">
+        <h2 class="label">Configure</h2>
+        <p>My logging provider is 
+          <select name="provider">
+            <option value="splunk">Splunk</option>
+            <option value="sumologic">Sumologic</option>
+            <option value="bigquery">BigQuery</option>
+            <option value="other">Other</option>
+          </select>
+        and I am configuring using 
+          <select name="method">
+            <option value="UI">the web interface.</option>
+            <option value="API">API automation.</option>
+          </select>
+        </p>
+      </div>
+      <div id="standard-fields">
+        <h2 class="label">Commonly Used Fields</h2>
+        <p class="placemat">will hold draggable / selectable common fields</p>
+      </div>
+      <div id="generator">
+        <h2 class="label">Create Fields</h2>
+        <p>I want to add a 
+          <select name="type">
+            <option value="header">header</option>
+            <option value="vclvalue">VCL generated value</option>
+          </select>
+        </p>
+      </div>
+      <div id="generate">
+        <h2 class="label">Format String</h2>
+        <div id="gen-content">
+          <p id="generated">will hold the generated json logging string</p>
         </div>
-	      <div id="form">
-	        <button onclick="holder()">click me</button>
-	      </div>
-	      <div id="generated">
-	        .
-	      </div>
-	    </div>
+        <div id="copy">
+          <button id="copy-button">Copy</button>
+        </div>
+      </div>
 	  </div>
+    <p id="disclaim">Copyright Jonathan Dade 2017. No cookies in use on this site. Use site entirely at own risk.</p>
   </body>
 </html>

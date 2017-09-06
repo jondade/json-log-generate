@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
 body {
-	background-color: black;
-	color:#e82c2a;
+	background-color: #e3e3e3;
+	/*color:#e82c2a;*/
 	font-family: 'Raleway';
 	padding:0px;
 	margin:0px;
@@ -10,26 +10,68 @@ body {
 
 h1 {
 	color:#e82c2a;
-	height: 2em;
-	width: 100%;
 	text-align: center;
 	vertical-align: middle;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+p.placemat {
+	color: #aaa;
+	background-color: #eee;
+}
+
+p#disclaim {
+	color:#555;
+	font-size: small;
+	text-align: center;
+	width: 100%;
+	margin-left: 5em;
+	margin-right: 5em;
+}
+
+#emphasis {
+	font-weight: bolder;
 }
 
 #header {
-	width: 100%;
-	padding-top: 0.25em;
-	padding-bottom: 0.25em;
-	padding-left: 1em;
-	padding-right: 1em;
 	color: #3e3e3e;
 }
 
 #centerise {
-	margin-left: 10em;
-	margin-right: 10em;
+	margin-left: 5em;
+	margin-right: 5em;
+	padding-left: 3em;
+	padding-right: 3em;
+	margin-bottom: 3em;
 	min-height: 1080px;
 	height: 100%;
 	background-color: white;
+}
+
+#intro {
 
 }
+
+div#form {
+	margin-top:2em;
+}
+
+h2.label {
+	text-align: left;
+	font-weight: bold;
+}
+
+div#standard-fields {
+	text-align: center;
+}
+
+p#generated {
+	min-height:3em;
+	color: #888;
+	background-color: #eee;
+}
+
+div#gen-content {}
+
+div#copy {}
