@@ -1,3 +1,9 @@
+var jsonString = "";
+
+function init() {
+	jsonString = "1";
+}
+
 function holder(){
-	alert("testing");
+	alert("jsonString is: " + jsonString);
 }

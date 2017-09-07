@@ -4,7 +4,7 @@
     <script src="json-logging.js"></script>
     <link rel="stylesheet" type="text/css" href="json-logging.css" />
   </head>
-  <body>
+  <body onload="init()">
     <div id="centerise">
 	    <div id="header">
 	      <h1>Fastly JSON Log Creator</h1>
@@ -17,26 +17,27 @@
       <div id="form">
         <h2 class="label">Configure</h2>
         <p>My logging provider is 
-          <select name="provider">
+          <select name="provider" onchange="holder()">
             <option value="splunk">Splunk</option>
             <option value="sumologic">Sumologic</option>
             <option value="bigquery">BigQuery</option>
             <option value="other">Other</option>
           </select>
         and I am configuring using 
-          <select name="method">
+          <select name="method" onchange="holder()">
             <option value="UI">the web interface.</option>
             <option value="API">API automation.</option>
           </select>
         </p>
       </div>
-      <div id="standard-fields">
+      <!--<div id="standard-fields">
         <h2 class="label">Commonly Used Fields</h2>
         <p class="placemat">will hold draggable / selectable common fields</p>
-      </div>
+      </div> -->
       <div id="generator">
         <h2 class="label">Create Fields</h2>
-        <p>I want to add a 
+        <p>I want to add a value called 
+          <input type="text" name="name"> . Its is a 
           <select name="type">
             <option value="header">header</option>
             <option value="vclvalue">VCL generated value</option>
@@ -49,7 +50,7 @@
           <p id="generated">will hold the generated json logging string</p>
         </div>
         <div id="copy">
-          <button id="copy-button">Copy</button>
+          <button id="copy-button" onclick="holder()">Copy</button>
         </div>
       </div>
 	  </div>
