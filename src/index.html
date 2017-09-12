@@ -17,20 +17,22 @@
       <div id="form">
         <h2 class="label">Configure</h2>
         <p>My logging provider is 
-          <select name="provider" onchange="holder()">
+          <select id="provider" onchange="updateProvider()">
+            <option value="bad"></option>
             <option value="splunk">Splunk</option>
             <option value="sumologic">Sumologic</option>
             <option value="bigquery">BigQuery</option>
             <option value="other">Other</option>
           </select>
         and I am configuring using 
-          <select name="method" onchange="holder()">
+          <select id="method" onchange="updateMethod()">
+            <option value="bad"></option>
             <option value="UI">the web interface.</option>
             <option value="API">API automation.</option>
           </select>
         </p>
       </div>
-      <!--<div id="standard-fields">
+      <!-- <div id="standard-fields">
         <h2 class="label">Commonly Used Fields</h2>
         <p class="placemat">will hold draggable / selectable common fields</p>
       </div> -->
@@ -46,14 +48,16 @@
       </div>
       <div id="generate">
         <h2 class="label">Format String</h2>
+        <div id="copy">
+          <button class="copy-button" onclick="assemble()">Assemble JSON</button>
+          <button class="copy-button" onclick="holder()">Copy</button>
+        </div>
         <div id="gen-content">
           <p id="generated">will hold the generated json logging string</p>
         </div>
-        <div id="copy">
-          <button id="copy-button" onclick="holder()">Copy</button>
-        </div>
       </div>
 	  </div>
+    <p id="disclaim">Source code and contributions available at <a href="https://github.com/jondade/json-log-generate/README.md" target="_blank">https://github.com/jondade/json-log-generate</a></p>
     <p id="disclaim">Copyright Jonathan Dade 2017. No cookies in use on this site. Use site entirely at own risk.</p>
   </body>
 </html>

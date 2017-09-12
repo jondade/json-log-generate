@@ -25,9 +25,9 @@ p#disclaim {
 	color:#555;
 	font-size: small;
 	text-align: center;
-	width: 100%;
-	margin-left: 5em;
-	margin-right: 5em;
+	margin-left: 10em;
+	margin-right: 10em;
+	padding-left: 3em;
 }
 
 #emphasis {
@@ -39,12 +39,12 @@ p#disclaim {
 }
 
 #centerise {
-	margin-left: 5em;
-	margin-right: 5em;
+	margin-left: 10em;
+	margin-right: 10em;
 	padding-left: 3em;
 	padding-right: 3em;
 	margin-bottom: 3em;
-	min-height: 1080px;
+	min-height: 650px;
 	height: 100%;
 	background-color: white;
 }
@@ -70,6 +70,7 @@ p#generated {
 	min-height:3em;
 	color: #888;
 	background-color: #eee;
+	font-family: courier;
 }
 
 div#gen-content {}
