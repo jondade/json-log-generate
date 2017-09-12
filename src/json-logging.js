@@ -14,12 +14,6 @@ function init() {
   var method = "UI";
 }
 
-function debugAlert() {
-  alert("provider is: " + provider + 
-    "\njsonString is: " + jsonString +
-    "\nmethod is: " + method);
-}
-
 function updateGenerated(){
   out = "";
   switch (provider) {
