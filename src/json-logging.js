@@ -5,32 +5,27 @@ var method = "UI";
 var splunkStart = '{ "time": %{time.now.sec}V, "host":"fastly-%{req.service_id}V", "sourcetype":"_json", "event" { ';
 var splunkEnd = ' } }';
 
+var sumologicStart = '{ ';
+var sumologicEnd = ' }';
+
 var start = "";
 var end = "";
 
 function init() {
   var jsonParts = [];
   var provider = "splunk";
+  start = splunkStart;
+  end = splunkEnd;
   var method = "UI";
 }
 
 function updateGenerated(){
   out = "";
-  switch (provider) {
-    case "splunk":
-      out = out + splunkStart;
-      break;
-    case "sumologic":
-      out = out + sumologicStart;
-      break;
-    case "bigquery":
-      out = out + bigqueryStart;
-      break
-  }
 
+  out = out + start;
   out = out + jsonParts.join(", ");
 
-  out = out + splunkEnd;
+  out = out + end;
 
   document.getElementById("generated").innerHTML = out;
 }
@@ -47,6 +42,8 @@ function updateProvider(){
       break;
     case "sumologic":
       provider = "sumologic";
+      start = sumologicStart;
+      end = sumologicEnd;
       break;
     case "bigquery":
       provider = "bigquery";
@@ -58,9 +55,6 @@ function updateProvider(){
       alert("Bad choice. Try again.");
 
   } 
-
-  // Debug out
-  debugAlert();
 
   updateGenerated();
 }
@@ -84,15 +78,14 @@ function updateMethod(){
       alert("Falling back to UI formatting");
   } 
 
-  // Debug out
-  debugAlert();
-
   updateGenerated();
 }
 
 function addValue() {
   var newPart = "";
   newPart = newPart + '"' + document.getElementById("name").value + '":';
+  // Find the type
+  // type = document.getElementById()
   newPart = newPart + '"' + document.getElementById("source").value + '"';
 
   jsonParts.push(newPart);
