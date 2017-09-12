@@ -18,17 +18,17 @@
         <h2 class="label">Configure</h2>
         <p>My logging provider is 
           <select id="provider" onchange="updateProvider()">
-            <option value="bad"></option>
+            <!-- <option value="bad"></option> -->
             <option value="splunk">Splunk</option>
-            <option value="sumologic">Sumologic</option>
+<!--             <option value="sumologic">Sumologic</option>
             <option value="bigquery">BigQuery</option>
-            <option value="other">Other</option>
+            <option value="other">Other</option> -->
           </select>
         and I am configuring using 
           <select id="method" onchange="updateMethod()">
-            <option value="bad"></option>
+            <!-- <option value="bad"></option> -->
             <option value="UI">the web interface.</option>
-            <option value="API">API automation.</option>
+            <!-- <option value="API">API automation.</option> -->
           </select>
         </p>
       </div>
@@ -39,21 +39,20 @@
       <div id="generator">
         <h2 class="label">Create Fields</h2>
         <p>I want to add a value called 
-          <input type="text" name="name"> . Its is a 
-          <select name="type">
+          <input type="text" id="name"> . Its is a 
+          <select id="type">
             <option value="header">header</option>
             <option value="vclvalue">VCL generated value</option>
           </select>
+          with the source of
+          <input type="text" id="source">.
+          <button id="addValue" onclick="addValue()">Add</button>
         </p>
       </div>
       <div id="generate">
         <h2 class="label">Format String</h2>
-        <div id="copy">
-          <button class="copy-button" onclick="assemble()">Assemble JSON</button>
-          <button class="copy-button" onclick="holder()">Copy</button>
-        </div>
         <div id="gen-content">
-          <p id="generated">will hold the generated json logging string</p>
+          <p id="generated" onclick="updateGenerated()">Will hold the generated logging string</p>
         </div>
       </div>
 	  </div>

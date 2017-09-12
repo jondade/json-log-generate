@@ -1,15 +1,17 @@
 var jsonParts = [];
-var provider = "";
-var method = "";
+var provider = "splunk";
+var method = "UI";
 
-var splunkStart = '{ "time": %{time.now.sec}V, "host":"fastly-%{req.service_id}V", "sourcetype":"_json", "event" {';
-var splunkEnd = ' }';
+var splunkStart = '{ "time": %{time.now.sec}V, "host":"fastly-%{req.service_id}V", "sourcetype":"_json", "event" { ';
+var splunkEnd = ' } }';
 
 var start = "";
 var end = "";
 
 function init() {
-  jsonString = "1";
+  var jsonParts = [];
+  var provider = "splunk";
+  var method = "UI";
 }
 
 function debugAlert() {
@@ -19,7 +21,7 @@ function debugAlert() {
 }
 
 function updateGenerated(){
-  out = ""
+  out = "";
   switch (provider) {
     case "splunk":
       out = out + splunkStart;
@@ -34,7 +36,7 @@ function updateGenerated(){
 
   out = out + jsonParts.join(", ");
 
-  out = out + 
+  out = out + splunkEnd;
 
   document.getElementById("generated").innerHTML = out;
 }
@@ -90,6 +92,16 @@ function updateMethod(){
 
   // Debug out
   debugAlert();
+
+  updateGenerated();
+}
+
+function addValue() {
+  var newPart = "";
+  newPart = newPart + '"' + document.getElementById("name").value + '":';
+  newPart = newPart + '"' + document.getElementById("source").value + '"';
+
+  jsonParts.push(newPart);
 
   updateGenerated();
 }
