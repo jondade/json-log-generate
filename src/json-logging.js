@@ -2,37 +2,66 @@
 var jsonParts = [];
 var provider = splunk;
 var method = "UI";
-var type = stringData;
+var type = reqHeader;
 
 // Providers
-var splunk = { name:'splunk', start:'{ "time": %{time.now.sec}V, "host":"fastly-%{req.service_id}V", "sourcetype":"_json", "event" { ', end:' } }' };
+var splunk = { name:'splunk', start:'{ "time": %{time.now.sec}V, "host":"fastly-%{req.service_id}V", "sourcetype":"_json", "event": { ', end:' } }' };
 var sumologic = { name: 'sumologic', start:'{ ',end:' } '};
+var jsonPlain = { name: 'jsonPlain', start:'{ ',end:' } '};
 
 // value types
 var numberData = {name: 'numberData', start:'', end:''};
 var stringData = {name: 'stringData', start: '"', end:'"'};
-var reqHeader = {name: 'reqHeader', start: '%{', end:'}i'};
-var respHeader = {name: 'respHeader', start: '%{', end: '}o'};
-var vclData = {name: 'vclData', start: '%{', end: '}V'};
+var reqHeader = {name: 'reqHeader', start: '"%{', end:'}i"'};
+var respHeader = {name: 'respHeader', start: '"%{', end: '}o"'};
+var vclData = {name: 'vclData', start: '"%{', end: '}V"'};
 
 // Set basics up on page load
 function init() {
   jsonParts = [];
   provider = splunk;
-  type = stringData;
+  type = reqHeader;
   method = "UI";
 }
 
 // spit out the data for use
 function updateGenerated(){
-  out = "";
-
-  out = out + provider.start;
-  out = out + jsonParts.join(", ");
-
-  out = out + provider.end;
-
+  out = '<span class="gen">'+ provider.start + '</span>';
+  //out = out + jsonParts.join('<span class="separator">, </span>');
+  out = out + buildInnerJson();
+  out = out + '<span class="gen">' + provider.end + '</span>';
   document.getElementById("generated").innerHTML = out;
+  updateLength();
+}
+
+function removePart(id) {
+  jsonParts.splice(id, 1);
+  updateGenerated();
+}
+
+function buildInnerJson() {
+  parts = "";
+  for (id = 0; id < jsonParts.length; id++) {
+    parts += '<span class="part" alt="Click to remove" id="' + id + '" onClick="removePart(' + id + ')">';
+    parts += jsonParts[id];
+    parts += '</span>';
+    if (id < (jsonParts.length - 1) ) {
+      parts += '<span class="separator">, </span>';
+    }
+  }
+  return parts;
+}
+
+// update displayed length
+function updateLength() {
+  totalLength = provider.start.length + provider.end.length + jsonParts.join(", ").length;
+  var lengthspan = document.getElementById("totallength");
+  lengthspan.innerHTML = totalLength;
+  if ( totalLength > 1096 ){
+    lengthspan.style.color = "#e82c2a";
+  } else {
+    lengthspan.style.color = "#e3e3e3";
+  }
 }
 
 // Set the logging type
@@ -51,7 +80,7 @@ function updateProvider(){
       provider = "bigquery";
       break;
     case "other":
-      provider = "other";
+      provider = jsonPlain;
       break;
     case "bad":
       alert("Bad choice. Try again.");

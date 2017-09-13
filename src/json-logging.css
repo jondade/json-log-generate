@@ -1,52 +1,51 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
 body {
-	background-color: #e3e3e3;
-	/*color:#e82c2a;*/
-	font-family: 'Raleway';
-	padding:0px;
-	margin:0px;
+  background-color: #e3e3e3;
+  /*color:#e82c2a;*/
+  font-family: 'Raleway';
+  padding:0px;
+  margin:0px;
 }
 
 h1 {
-	color:#e82c2a;
-	text-align: center;
-	vertical-align: middle;
-	padding-top: 1em;
-	padding-bottom: 1em;
+  color:#e82c2a;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 p.placemat {
-	color: #aaa;
-	background-color: #eee;
+  color: #aaa;
+  background-color: #eee;
 }
 
 p#disclaim {
-	color:#555;
-	font-size: small;
-	text-align: center;
-	margin-left: 10em;
-	margin-right: 10em;
-	padding-left: 3em;
+  color:#555;
+  font-size: small;
+  text-align: center;
+  margin-left: 10em;
+  margin-right: 10em;
+  padding-left: 3em;
 }
 
 #emphasis {
-	font-weight: bolder;
+  font-weight: bolder;
 }
 
 #header {
-	color: #3e3e3e;
+  color: #3e3e3e;
 }
 
 #centerise {
-	margin-left: 10em;
-	margin-right: 10em;
-	padding-left: 3em;
-	padding-right: 3em;
-	margin-bottom: 3em;
-	min-height: 650px;
-	height: 100%;
-	background-color: white;
+  margin-left: 10em;
+  margin-right: 10em;
+  padding-left: 3em;
+  padding-right: 3em;
+  margin-bottom: 3em;
+  min-height: 850px;
+  background-color: white;
 }
 
 #intro {
@@ -54,25 +53,44 @@ p#disclaim {
 }
 
 div#form {
-	margin-top:2em;
+  margin-top:2em;
 }
 
 h2.label {
-	text-align: left;
-	font-weight: bold;
+  text-align: left;
+  font-weight: bold;
 }
 
 div#standard-fields {
-	text-align: center;
+  text-align: center;
 }
 
 p#generated {
-	min-height:3em;
-	color: #888;
-	background-color: #eee;
-	font-family: courier;
+  min-height:3em;
+  color: #888;
+  background-color: #eee;
+  font-family: courier;
+  padding: 0.7em;
+}
+
+p#length {
+  text-align: right;
+  color: #3c3c3c;
 }
 
 div#gen-content {}
 
 div#copy {}
+
+span.gen {
+  color: #77d;
+}
+
+span.separator {
+  color: green;
+  font-weight: bolder;
+}
+
+span.part:hover {
+  color: #e82c2a;
+}

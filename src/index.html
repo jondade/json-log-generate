@@ -21,15 +21,15 @@
             <!-- <option value="bad"></option> -->
             <option value="splunk">Splunk</option>
             <option value="sumologic">Sumologic</option>
-<!--            <option value="bigquery">BigQuery</option>
-            <option value="other">Other</option> -->
+<!--            <option value="bigquery">BigQuery</option>  -->
+            <option value="other">Other</option>
           </select>
-        and I am configuring using 
+        <!-- and I am configuring using 
           <select id="method" onchange="updateMethod()">
-            <!-- <option value="bad"></option> -->
+            <option value="bad"></option>
             <option value="UI">the web interface.</option>
-            <!-- <option value="API">API automation.</option> -->
-          </select>
+            <option value="API">API automation.</option>
+          </select> -->
         </p>
       </div>
       <!-- <div id="standard-fields">
@@ -37,17 +37,17 @@
         <p class="placemat">will hold draggable / selectable common fields</p>
       </div> -->
       <div id="generator">
-        <h2 class="label">Create Fields</h2>
-        <p>I want to add a value called 
-          <input type="text" id="name"> . Its is a 
+        <h2 class="label">Create Custom Fields</h2>
+        <p>I want to add a 
           <select id="type" onchange="updateType()">
-            <option value="string">string</option>
             <option value="reqheader">request header</option>
             <option value="respheader">response header</option>
             <option value="number">number</option>
             <option value="vclvalue">VCL generated value</option>
+            <option value="string">string</option>
           </select>
-          with the source of
+          identified by 
+          <input type="text" id="name"> . Its value is 
           <input type="text" id="source">.
           <button id="addValue" onclick="addValue()">Add</button>
         </p>
@@ -57,6 +57,8 @@
         <div id="gen-content">
           <p id="generated" ondblclick="updateGenerated()">Will hold the generated logging string</p>
         </div>
+        <p id="length"><span id="totallength">0</span> / 1096</p>
+        <p>Click a key:value pair to remove from the json.</p>
       </div>
 	  </div>
     <p id="disclaim">Source code and contributions available at <a href="https://github.com/jondade/json-log-generate/README.md" target="_blank">https://github.com/jondade/json-log-generate</a></p>
