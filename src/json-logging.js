@@ -15,6 +15,8 @@ var stringData = {name: 'stringData', start: '"', end:'"'};
 var reqHeader = {name: 'reqHeader', start: '"%{', end:'}i"'};
 var respHeader = {name: 'respHeader', start: '"%{', end: '}o"'};
 var vclData = {name: 'vclData', start: '"%{', end: '}V"'};
+var timeData = {name: 'timeData', start: '"%{', end: '}t"'};
+var cookieData = {name: 'cookieData', start: '"%{', end: '}C"'};
 
 // Set basics up on page load
 function init() {
@@ -127,6 +129,12 @@ function updateType() {
       break;
     case "string":
       type = stringData;
+      break;
+    case "time":
+      type = timeData;
+      break;
+    case "cookie":
+      type = cookieData;
       break;
   }
 }
