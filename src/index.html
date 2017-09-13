@@ -40,8 +40,11 @@
         <h2 class="label">Create Fields</h2>
         <p>I want to add a value called 
           <input type="text" id="name"> . Its is a 
-          <select id="type">
-            <option value="header">header</option>
+          <select id="type" onchange="updateType()">
+            <option value="string">string</option>
+            <option value="reqheader">request header</option>
+            <option value="respheader">response header</option>
+            <option value="number">number</option>
             <option value="vclvalue">VCL generated value</option>
           </select>
           with the source of
