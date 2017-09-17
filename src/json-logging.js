@@ -20,9 +20,9 @@ var cookieData = {name: 'cookieData', start: '"%{', end: '}C"'};
 
 // Set basics up on page load
 function init() {
-  jsonParts = [];
-  provider = splunk;
-  type = reqHeader;
+  updateProvider();
+  // updateMethod();
+  updateType();
   method = "UI";
 }
 
@@ -152,4 +152,15 @@ function addValue() {
   jsonParts.push(newPart);
 
   updateGenerated();
+}
+
+function toggle(id) {
+  // alert("ID: " + id);
+  var thisID = document.getElementById(id);
+  alert(thisID);
+  if (thisID.style.visibility == "hidden"){
+    thisID.style.visibility = "hidden";
+  } else {
+    thisID.style.visible = "none";
+  }
 }

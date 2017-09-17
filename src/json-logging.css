@@ -30,6 +30,10 @@ p#disclaim {
   padding-left: 3em;
 }
 
+#commonThings #commonCaching {
+  visibility: none;
+}
+
 #emphasis {
   font-weight: bolder;
 }
@@ -63,7 +67,7 @@ h2.label {
 }
 
 div#standard-fields {
-  text-align: center;
+  /*text-align: center;*/
 }
 
 p#generated {

@@ -19,8 +19,8 @@
         <p>My logging provider is 
           <select id="provider" onchange="updateProvider()">
             <!-- <option value="bad"></option> -->
-            <option value="splunk">Splunk</option>
             <option value="sumologic">Sumologic</option>
+            <option value="splunk">Splunk</option>
 <!--            <option value="bigquery">BigQuery</option>  -->
             <option value="other">Other</option>
           </select>
@@ -34,7 +34,22 @@
       </div>
       <div id="standard-fields">
         <h2 class="label">Commonly Used Fields</h2>
-        <p class="placemat"></p>
+        <p id="commoners"></p>
+        <h3 class="commonTitle" onclick="toggle('commonThings')">Commonly Used Values</h2>
+        <div id="commonThings">
+          <p class="commonStuff" onclick="addValue()">Client IP</p>
+          <p class="commonStuff" onclick="addValue()">Request Method</p>
+          <p class="commonStuff" onclick="addValue()">Host</p>
+          <p class="commonStuff" onclick="addValue()">Request is TLS</p>
+        </div>
+        <h3 class="commonTitle" onclick="toggle('commonCaching')">Commonly Used Cache Values</h2>
+        <div id="commonCaching">
+          <p class="commonStuff" onclick="addValue()">Cache Status</p>
+          <p class="commonStuff" onclick="addValue()">Cache Control</p>
+          <p class="commonStuff" onclick="addValue()">Surrogate Control</p>
+          <p class="commonStuff" onclick="addValue()">Age</p>
+          <p class="commonStuff" onclick="addValue()">Cache Hits</p>
+        </div>
       </div>
       <div id="generator">
         <h2 class="label">Create Custom Fields</h2>
