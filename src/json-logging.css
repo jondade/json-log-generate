@@ -30,8 +30,18 @@ p#disclaim {
   padding-left: 3em;
 }
 
-#commonThings #commonCaching {
-  visibility: none;
+/*#commonThings #commonCaching {
+  display: none;
+}
+*/
+
+.expandable {
+  color: #e82c2a;
+  font-weight: bolder;
+}
+
+.things {
+  display: none;
 }
 
 #emphasis {

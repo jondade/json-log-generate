@@ -59,7 +59,7 @@ function updateLength() {
   totalLength = provider.start.length + provider.end.length + jsonParts.join(", ").length;
   var lengthspan = document.getElementById("totallength");
   lengthspan.innerHTML = totalLength;
-  if ( totalLength > 1096 ){
+  if ( totalLength > 4096 ){
     lengthspan.style.color = "#e82c2a";
   } else {
     lengthspan.style.color = "#e3e3e3";
@@ -112,8 +112,11 @@ function updateMethod(){
   updateGenerated();
 }
 
-function updateType() {
-  var newType = document.getElementById("type").value;
+function updateType(newType) {
+  if (newType === undefined) {
+    newType = document.getElementById("type").value;
+  }
+
   switch(newType) {
     case "reqheader":
       type = reqHeader;
@@ -139,15 +142,25 @@ function updateType() {
   }
 }
 
+function addCommon(type, name, source){
+  updateType(type);
+  addValue(name, source);
+}
+
 // add the new object to the list.
-function addValue() {
-  // alert("type is: \n" + type);
+function addValue(key, value) {
+  if (key === undefined) {
+    key = document.getElementById("name").value
+  }
+  if (value === undefined) {
+    value = document.getElementById("source").value
+  }
   // empty string
   var newPart = "";
   // set the json key
-  newPart = newPart + '"' + document.getElementById("name").value + '":';
+  newPart = newPart + '"' + key + '":';
   // set the json value
-  newPart = newPart + type.start + document.getElementById("source").value + type.end;
+  newPart = newPart + type.start + value + type.end;
 
   jsonParts.push(newPart);
 
@@ -155,12 +168,20 @@ function addValue() {
 }
 
 function toggle(id) {
-  // alert("ID: " + id);
   var thisID = document.getElementById(id);
-  alert(thisID);
-  if (thisID.style.visibility == "hidden"){
-    thisID.style.visibility = "hidden";
+  var thisIDdiv = (thisID.getElementsByTagName("div"))[0];
+  var thisIDspan = (thisID.getElementsByTagName("span"))[0];
+
+  if (getStyleValue(thisIDdiv, 'display') == "none"){
+    thisIDdiv.style.display = "block";
+    thisIDspan.innerHTML = "-";
   } else {
-    thisID.style.visible = "none";
+    thisIDdiv.style.display = "none";
+    thisIDspan.innerHTML = "+";
   }
+}
+
+function getStyleValue(element, property) {
+  var style = window.getComputedStyle(element);
+  return style.getPropertyValue(property);
 }
