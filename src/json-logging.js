@@ -26,6 +26,12 @@ function init() {
   method = "UI";
 }
 
+// Clear out the fields
+function reset() {
+  jsonParts = [];
+  updateGenerated();
+}
+
 // spit out the data for use
 function updateGenerated(){
   out = '<span class="gen">'+ provider.start + '</span>';

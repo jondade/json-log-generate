@@ -36,7 +36,7 @@
         <h2 class="label">Commonly Used Fields</h2>
         <p id="commoners"></p>
         <div id="commonThings">
-          <h3 class="commonTitle" onclick="toggle('commonThings')"><span class="expandable">+</span> Commonly Used Values</h3>
+          <h3 class="commonTitle" onclick="toggle('commonThings')"><span class="expandable">+</span> Commonly Used</h3>
           <div class="things" id="commonThings">
             <p class="commonStuff" onclick='addCommon("string", "Client IP", "%h")'>Client IP</p>
             <p class="commonStuff" onclick='addCommon("string", "Request", "%m")'>Request Method</p>
@@ -45,7 +45,7 @@
           </div>
         </div>
         <div id="commonCaching">
-          <h3 class="commonTitle" onclick="toggle('commonCaching')"><span class="expandable">+</span> Commonly Used Cache Values</h3>
+          <h3 class="commonTitle" onclick="toggle('commonCaching')"><span class="expandable">+</span> Common Cache Values</h3>
           <div class="things">
             <p class="commonStuff" onclick='addCommon("vclvalue", "Cache Status", "regsub(fastly_info.state, \"^(HIT-(SYNTH)|(HITPASS|HIT|MISS|PASS|ERROR|PIPE)).*\", \"\\\\2\\\\3\")")'>Cache Status</p>
             <p class="commonStuff" onclick='addCommon("respheader", "Cache-control", "Cache-control")'>Cache Control</p>
@@ -74,10 +74,11 @@
       </div>
       <div id="generate">
         <h2 class="label">Format String</h2>
+        <div id="clear"><button onclick="reset()">Reset fields</button></div>
+        <div id="length"><span id="totallength">0</span> / 4096</div>
         <div id="gen-content">
           <p id="generated" ondblclick="updateGenerated()">Will hold the generated logging string</p>
         </div>
-        <p id="length"><span id="totallength">0</span> / 4096</p>
         <p>Click a key:value pair to remove from the json.</p>
       </div>
 	  </div>

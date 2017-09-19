@@ -30,11 +30,6 @@ p#disclaim {
   padding-left: 3em;
 }
 
-/*#commonThings #commonCaching {
-  display: none;
-}
-*/
-
 .expandable {
   color: #e82c2a;
   font-weight: bolder;
@@ -63,10 +58,6 @@ p#disclaim {
   background-color: white;
 }
 
-#intro {
-
-}
-
 div#form {
   margin-top:2em;
 }
@@ -88,7 +79,15 @@ p#generated {
   padding: 0.7em;
 }
 
-p#length {
+#clear {
+  width: 75%;
+  margin-right: 0em;
+  display: inline-block;
+}
+
+#length {
+  display: inline-block;
+  float: right;
   text-align: right;
   color: #3c3c3c;
 }
