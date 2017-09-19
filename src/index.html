@@ -55,6 +55,8 @@
       </div>
       <div id="generator">
         <h2 class="label">Create Custom Fields</h2>
+        <div class="helpMark" onclick="showHelp('helps')">?</div>
+        <p class="indent" id="helps">Use this section to add fields that aren't pre-defined. The types dropdown correspond to how they will present inside the JSON. The &quot;identified by&quot; input is for the name of the value or &quot;key&quot; and the &quot;value is&quot; input is either a literal value, or the VCL to get the value.</p>
         <p class="indent">I want to add a 
           <select id="type" onchange="updateType()">
             <option value="reqheader">request header</option>

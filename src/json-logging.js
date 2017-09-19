@@ -187,6 +187,15 @@ function toggle(id) {
   }
 }
 
+function showHelp(id) {
+  var thing = document.getElementById(id);
+  if ( getStyleValue(thing, 'display') == 'none'){
+    thing.style.display = 'block';
+  } else {
+    thing.style.display = 'none';
+  }
+}
+
 function getStyleValue(element, property) {
   var style = window.getComputedStyle(element);
   return style.getPropertyValue(property);

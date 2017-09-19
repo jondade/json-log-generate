@@ -16,6 +16,10 @@ h1 {
   padding-bottom: 1em;
 }
 
+h2 {
+  display: inline-block;
+}
+
 p.placemat {
   color: #aaa;
   background-color: #eee;
@@ -73,6 +77,16 @@ div#standard-fields {
 
 .indent, .things {
   margin-left: 2em;
+}
+
+#helps {
+  display: none;
+}
+
+.helpMark {
+  display: inline-block;
+  font-size: normal;
+  color: #e82c2a;
 }
 
 p#generated {
