@@ -16,7 +16,7 @@
 	    </div>
       <div id="form">
         <h2 class="label">Configure</h2>
-        <p>My logging provider is 
+        <p class="indent">My logging provider is 
           <select id="provider" onchange="updateProvider()">
             <!-- <option value="bad"></option> -->
             <option value="sumologic">Sumologic</option>
@@ -34,8 +34,7 @@
       </div>
       <div id="standard-fields">
         <h2 class="label">Commonly Used Fields</h2>
-        <p id="commoners"></p>
-        <div id="commonThings">
+        <div id="commonThings" class="indent">
           <h3 class="commonTitle" onclick="toggle('commonThings')"><span class="expandable">+</span> Commonly Used</h3>
           <div class="things" id="commonThings">
             <p class="commonStuff" onclick='addCommon("string", "Client IP", "%h")'>Client IP</p>
@@ -44,9 +43,9 @@
             <p class="commonStuff" onclick='addCommon("vclvalue", "TLS", "if(req.is_ssl, \"true\", \"false\")")'>Request is TLS</p>
           </div>
         </div>
-        <div id="commonCaching">
+        <div id="commonCaching" class="indent">
           <h3 class="commonTitle" onclick="toggle('commonCaching')"><span class="expandable">+</span> Common Cache Values</h3>
-          <div class="things">
+          <div class="things" >
             <p class="commonStuff" onclick='addCommon("vclvalue", "Cache Status", "regsub(fastly_info.state, \"^(HIT-(SYNTH)|(HITPASS|HIT|MISS|PASS|ERROR|PIPE)).*\", \"\\\\2\\\\3\")")'>Cache Status</p>
             <p class="commonStuff" onclick='addCommon("respheader", "Cache-control", "Cache-control")'>Cache Control</p>
             <p class="commonStuff" onclick='addCommon("respheader", "Age", "Age")'>Age</p>
@@ -56,7 +55,7 @@
       </div>
       <div id="generator">
         <h2 class="label">Create Custom Fields</h2>
-        <p>I want to add a 
+        <p class="indent">I want to add a 
           <select id="type" onchange="updateType()">
             <option value="reqheader">request header</option>
             <option value="respheader">response header</option>

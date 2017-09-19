@@ -71,6 +71,10 @@ div#standard-fields {
   /*text-align: center;*/
 }
 
+.indent, .things {
+  margin-left: 2em;
+}
+
 p#generated {
   min-height:3em;
   color: #888;
