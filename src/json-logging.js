@@ -187,6 +187,21 @@ function toggle(id) {
   }
 }
 
+function expand(id) {
+  var pTags = document.getElementsByTagName('p');
+  console.log(pTags);
+  var pTag = pTags.getElementById(id);
+  var divTags = document.getElementsByTagName('div');
+  var divTag = divTags.getElementById(id);
+  if ( getStyleValue(divTag, 'display') == 'none' ) {
+    divTag.style.display = "block";
+    pTag.innerHTML = '-';
+  } else {
+    divTag.style.display = 'none';
+    pTag.innerHTML = '+';
+  }
+}
+
 function showHelp(id) {
   var thing = document.getElementById(id);
   if ( getStyleValue(thing, 'display') == 'none'){

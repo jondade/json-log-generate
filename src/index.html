@@ -34,6 +34,7 @@
       </div>
       <div id="standard-fields">
         <h2 class="label">Commonly Used Fields</h2>
+        <p id="commonThings" onclick="expand('commonThings')">+</p>
         <div id="commonThings" class="indent">
           <h3 class="commonTitle" onclick="toggle('commonThings')"><span class="expandable">+</span> Commonly Used</h3>
           <div class="things" id="commonThings">
@@ -75,8 +76,10 @@
       </div>
       <div id="generate">
         <h2 class="label">Format String</h2>
-        <div id="clear"><button onclick="reset()">Reset fields</button></div>
-        <div id="length"><span id="totallength">0</span> / 4096</div>
+        <div id="clear">
+          <button onclick="reset()">Reset fields</button>
+          <div id="length"><span id="totallength">0</span> / 4096</div>
+        </div>
         <div id="gen-content">
           <p id="generated" ondblclick="updateGenerated()">Will hold the generated logging string</p>
         </div>

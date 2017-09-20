@@ -54,9 +54,10 @@ p#disclaim {
 #centerise {
   margin-left: 10em;
   margin-right: 10em;
+  margin-bottom: 3em;
   padding-left: 3em;
   padding-right: 3em;
-  margin-bottom: 3em;
+  padding-bottom: 3em;
   min-height: 850px;
   min-width: 10em;
   background-color: white;
@@ -98,9 +99,6 @@ p#generated {
 }
 
 #clear {
-  width: 75%;
-  margin-right: 0em;
-  display: inline-block;
 }
 
 #length {
@@ -108,6 +106,12 @@ p#generated {
   float: right;
   text-align: right;
   color: #3c3c3c;
+}
+
+p#commonThings {
+  color: #e82c2a;
+  font-size: large;
+  font-weight: bold;
 }
 
 div#gen-content {}
