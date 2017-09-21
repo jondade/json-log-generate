@@ -5,7 +5,7 @@ var method = "UI";
 var type = reqHeader;
 
 // Providers
-var splunk = { name:'splunk', start:'{ "time": %{time.now.sec}V, "host":"fastly-%{req.service_id}V", "sourcetype":"_json", "event": { ', end:' } }' };
+var splunk = { name:'splunk', start:'{ "time": %{now.sec}V, "host":"fastly-%{req.service_id}V", "sourcetype":"_json", "event": { ', end:' } }' };
 var sumologic = { name: 'sumologic', start:'{ ',end:' } '};
 var jsonPlain = { name: 'jsonPlain', start:'{ ',end:' } '};
 
@@ -187,18 +187,15 @@ function toggle(id) {
   }
 }
 
-function expand(id) {
-  var pTags = document.getElementsByTagName('p');
-  console.log(pTags);
-  var pTag = pTags.getElementById(id);
-  var divTags = document.getElementsByTagName('div');
-  var divTag = divTags.getElementById(id);
-  if ( getStyleValue(divTag, 'display') == 'none' ) {
-    divTag.style.display = "block";
-    pTag.innerHTML = '-';
+function expand(id, expand) {
+  var thisID = document.getElementById(id);
+  var thisExpand = document.getElementById(expand);
+  if ( getStyleValue(thisID, 'display') == 'none' ) {
+    thisID.style.display = "block";
+    thisExpand.innerHTML = '-';
   } else {
-    divTag.style.display = 'none';
-    pTag.innerHTML = '+';
+    thisID.style.display = 'none';
+    thisExpand.innerHTML = '+';
   }
 }
 

@@ -108,8 +108,29 @@ p#generated {
   color: #3c3c3c;
 }
 
+div#commonTop{
+  display: none;
+}
+
 p#commonThings {
   color: #e82c2a;
+  font-size: large;
+  font-weight: bold;
+}
+
+#commonThingsExpander {
+  color: black;
+  font-size: large;
+  margin-top: 0px;
+  margin-bottom: 0px;  
+}
+
+#expanderIcon {
+  color: #e82c2a;
+}
+
+#commonExpanderHelp {
+  color: #3c3c3c;
   font-size: large;
   font-weight: bold;
 }

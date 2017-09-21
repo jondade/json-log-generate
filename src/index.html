@@ -34,23 +34,25 @@
       </div>
       <div id="standard-fields">
         <h2 class="label">Commonly Used Fields</h2>
-        <p id="commonThings" onclick="expand('commonThings')">+</p>
-        <div id="commonThings" class="indent">
-          <h3 class="commonTitle" onclick="toggle('commonThings')"><span class="expandable">+</span> Commonly Used</h3>
-          <div class="things" id="commonThings">
-            <p class="commonStuff" onclick='addCommon("string", "Client IP", "%h")'>Client IP</p>
-            <p class="commonStuff" onclick='addCommon("string", "Request", "%m")'>Request Method</p>
-            <p class="commonStuff" onclick='addCommon("reqheader", "Host", "Fastly-Orig-Host")'>Host</p>
-            <p class="commonStuff" onclick='addCommon("vclvalue", "TLS", "if(req.is_ssl, \"true\", \"false\")")'>Request is TLS</p>
+        <h3 class="indent" id="commonThingsExpander" onclick="expand('commonTop', 'expanderIcon')"><span id="expanderIcon">+</span> All Fields</h3>
+        <div class="indent" id="commonTop">
+          <div id="commonThings" class="indent">
+            <h3 class="commonTitle" onclick="toggle('commonThings')"><span class="expandable">+</span> Commonly Used</h3>
+            <div class="things" id="commonThings">
+              <p class="commonStuff" onclick='addCommon("string", "Client IP", "%h")'>Client IP</p>
+              <p class="commonStuff" onclick='addCommon("string", "Request", "%m")'>Request Method</p>
+              <p class="commonStuff" onclick='addCommon("reqheader", "Host", "Fastly-Orig-Host")'>Host</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "TLS", "if(req.is_ssl, \"true\", \"false\")")'>Request is TLS</p>
+            </div>
           </div>
-        </div>
-        <div id="commonCaching" class="indent">
-          <h3 class="commonTitle" onclick="toggle('commonCaching')"><span class="expandable">+</span> Common Cache Values</h3>
-          <div class="things" >
-            <p class="commonStuff" onclick='addCommon("vclvalue", "Cache Status", "regsub(fastly_info.state, \"^(HIT-(SYNTH)|(HITPASS|HIT|MISS|PASS|ERROR|PIPE)).*\", \"\\\\2\\\\3\")")'>Cache Status</p>
-            <p class="commonStuff" onclick='addCommon("respheader", "Cache-control", "Cache-control")'>Cache Control</p>
-            <p class="commonStuff" onclick='addCommon("respheader", "Age", "Age")'>Age</p>
-            <p class="commonStuff" onclick='addCommon("respheader", "Cache Hits", "X-Cache-Hits")'>Cache Hits</p>
+          <div id="commonCaching" class="indent">
+            <h3 class="commonTitle" onclick="toggle('commonCaching')"><span class="expandable">+</span> Common Cache Values</h3>
+            <div class="things" >
+              <p class="commonStuff" onclick='addCommon("vclvalue", "Cache Status", "regsub(fastly_info.state, \"^(HIT-(SYNTH)|(HITPASS|HIT|MISS|PASS|ERROR|PIPE)).*\", \"\\\\2\\\\3\")")'>Cache Status</p>
+              <p class="commonStuff" onclick='addCommon("respheader", "Cache-control", "Cache-control")'>Cache Control</p>
+              <p class="commonStuff" onclick='addCommon("respheader", "Age", "Age")'>Age</p>
+              <p class="commonStuff" onclick='addCommon("respheader", "Cache Hits", "X-Cache-Hits")'>Cache Hits</p>
+            </div>
           </div>
         </div>
       </div>
