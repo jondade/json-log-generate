@@ -3,66 +3,67 @@
 require 'fastly'
 require 'yaml'
 require 'getoptlong'
+require 'pry'
 
-# Uploads new configuration and pages to json-generator services
-module Uploader
-  # Default location for the credentials yaml
-  CREDS_FILE = ENV['HOME'] + '/.fastly/api-creds.yaml'
+# Constants definitions
 
-  # Argument values
-  OPTS = GetoptLong.new(
-    ['--environment', '-e', GetoptLong::REQUIRED_ARGUMENT],
-    ['--help', '-h', GetoptLong::NO_ARGUMENT],
-    ['--creds-file', '-c', GetoptLong::OPTIONAL_ARGUMENT]
+# Default location for the credentials yaml
+CREDS_FILE = ENV['HOME'] + '/.fastly/api-creds.yaml'
+
+# Argument values
+OPTS = GetoptLong.new(
+  ['--environment', '-e', GetoptLong::REQUIRED_ARGUMENT],
+  ['--help', '-h', GetoptLong::NO_ARGUMENT],
+  ['--creds-file', '-c', GetoptLong::OPTIONAL_ARGUMENT]
   )
 
-  # Module Variables
-  # @!visibility private
-  attr_accessor :creds, :fastly_env, :files_path
+# Defaults
+file_path = File.dirname(__FILE__) + '/../src/'
+fastly_env = :test
 
-  # Reads the credentials
-  def self.read_creds(creds_file = Uploader::CREDS_FILE)
-    creds_handle = File.open(creds_file, 'r')
-    self.creds = YAML.safe_load(creds_handle.read, [String], [])
-  rescue e
-    puts 'failed to read creds: ' + e.message
-  ensure
-    creds_handle.close
-  end
+# Reads the credentials
+def read_creds(creds_file = CREDS_FILE)
+  creds_handle = File.open(creds_file, 'r')
+  YAML.safe_load(creds_handle.read, [String, Symbol], [])
+rescue Exception => e
+  puts 'failed to read creds: ' + e.message
+ensure
+  creds_handle.close
+end
 
-  # Prints out a help message.
-  def self.show_help
-    message = 'Usage: uploader.rb [-h --help] '
-    message << '[-e --environment live|stage] '
-    message << '[-c --creds-file file] '
-    message << 'path-to-upload-files'
-    puts message
-    exit
-  end
+# Prints out a help message.
+def show_help
+  message = 'Usage: uploader.rb [-h --help] '
+  message << '[-e --environment live|stage] '
+  message << '[-c --creds-file file] '
+  message << 'path-to-upload-files'
+  puts message
+  exit
+end
 
-  # Runs over command arguments and sets values from them.
-  def self.process_arguments
-    Uploader::OPTS.each do |arg, value|
-      case arg
-      when '--help'
-        Uploader.show_help
-      when '--environment'
-        Uploader.fastly_env = value != 'live' ? :test : :live
-      when '--creds-file'
-        Uploader.creds = value
-      end
-    end
-  end
-
-  # Runs the upload
-  def self.run
-    if ARGV.empty?
-      puts 'Not enough Arguments'
+# Runs over command arguments and sets values from them.
+def process_arguments
+  OPTS.each do |arg, value|
+    case arg
+    when '--help'
       show_help
+    when '--environment'
+      fastly_env = value != 'live' ? :test : :live
+    when '--creds-file'
+      creds = value
     end
-    Uploader.files_path = ARGV.pop
-    Uploader.process_arguments
   end
 end
 
-Uploader.run if File.basename(__FILE__) == 'uploader.rb'
+#
+# Main Code starts here
+#
+
+if ARGV.empty?
+  puts 'Not enough Arguments'
+  show_help
+end
+files_path = ARGV.pop
+creds = process_arguments
+# binding.pry
+client = Fastly.new(api_key: creds[])
