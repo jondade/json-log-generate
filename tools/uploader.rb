@@ -120,7 +120,7 @@ Dir.glob('*').each do |f|
       version:v.number,
       name:new_name,
       type:'request',
-      statement: 'req.url == "' + f + '"'
+      statement: 'req.url == "/' + f + '"'
     }
     client.create_condition(args)
     # compose the response data
@@ -156,4 +156,4 @@ Dir.chdir(old_dir)
 # activate the service
 v.activate!
 
-spew.info('Activated version ' + v.number.to_s + ' in ' + (fastly_env == :live ? 'live' : 'test') )
+spew.info('Activated version ' + v.number.to_s + ' in ' + (fastly_env == :live ? 'live' : 'test') + '. https://manage.fastly.com/configure/services/' + s.id + '/versions/' + v.number.to_s)
