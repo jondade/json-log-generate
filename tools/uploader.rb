@@ -43,6 +43,7 @@ def show_help
   message = 'Usage: uploader.rb [-h --help] '
   message << '[-e --environment live|stage] '
   message << '[-c --creds-file file] '
+  message << '[-d --debug]'
   message << 'path-to-upload-files'
   puts message
   exit
@@ -65,14 +66,9 @@ def process_arguments
   end
 end
 
-# Checks if a named object exists
-def find(name)
-end    
-
 #
 # Main Code starts here
 #
-
 
 # error out if the command was bad
 if ARGV.empty?
