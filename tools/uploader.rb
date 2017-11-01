@@ -107,7 +107,7 @@ Dir.glob('*').each do |f|
   create_new = true
   begin
     # If either of these causes an exception assume they don't exist
-    client.get_condition(service_id=s.id, version=v.number, name=new_name)
+    cond = client.get_condition(service_id=s.id, version=v.number, name=new_name)
   rescue Fastly::Error => e
     args = {
       service_id:s.id,
@@ -120,7 +120,7 @@ Dir.glob('*').each do |f|
     spew.info('Created condition: ' + new_name)  
   end
   begin
-    client.get_response_object(service_id=s.id, version=v.number, name=new_name)
+    resp = client.get_response_object(service_id=s.id, version=v.number, name=new_name)
     # update the content
     resp.content = File.read(f)
     # upload to API
