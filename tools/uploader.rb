@@ -43,7 +43,7 @@ def show_help
   message = 'Usage: uploader.rb [-h --help] '
   message << '[-e --environment live|stage] '
   message << '[-c --creds-file file] '
-  message << '[-d --debug]'
+  message << '[-d --debug] '
   message << 'path-to-upload-files'
   puts message
   exit
@@ -77,7 +77,7 @@ if ARGV.empty?
 end
 
 # grab the src path from the command
-files_path = ARGV.pop
+files_path = ARGV.pop if ARGV.length > 1
 
 # read arguments and fetch data
 process_arguments
@@ -106,15 +106,9 @@ Dir.glob('*').each do |f|
   new_name = f.gsub(/\//, '_')
   create_new = true
   begin
-    cond = client.get_condition(service_id=s.id, version=v.number, name=new_name)
-    resp = client.get_response_object(service_id=s.id, version=v.number, name=new_name)
-    create_new = false
+    # If either of these causes an exception assume they don't exist
+    client.get_condition(service_id=s.id, version=v.number, name=new_name)
   rescue Fastly::Error => e
-  end
-
-  # choose whether to create new
-  if create_new
-    # create a condition
     args = {
       service_id:s.id,
       version:v.number,
@@ -123,6 +117,17 @@ Dir.glob('*').each do |f|
       statement: 'req.url == "/' + f + '"'
     }
     client.create_condition(args)
+    spew.info('Created condition: ' + new_name)  
+  end
+  begin
+    client.get_response_object(service_id=s.id, version=v.number, name=new_name)
+    # update the content
+    resp.content = File.read(f)
+    # upload to API
+    client.update_response_object(resp)
+
+    spew.info('Updated file ' + f)
+  rescue Fastly::Error => e
     # compose the response data
     args = {
       service_id:s.id,
@@ -136,17 +141,7 @@ Dir.glob('*').each do |f|
     }
     # create the response
     client.create_response_object(args)
-
-    spew.info('Created file and condition: ' + new_name + ' from ' + f)
-
-  # or update the existing
-  else
-    # update the content
-    resp.content = File.read(f)
-    # upload to API
-    client.update_response_object(resp)
-
-    spew.info('Updated file ' + f)
+    spew.info('Created file: ' + new_name + ' from ' + f)
   end
 end
 
