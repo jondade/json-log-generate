@@ -54,6 +54,15 @@
               <p class="commonStuff" onclick='addCommon("respheader", "Cache Hits", "X-Cache-Hits")'>Cache Hits</p>
             </div>
           </div>
+          <div id="commonGeoLocation" class="indent">
+            <h3 class="commonTitle" onclick="toggle('commonGeoLocation')"><span class="expandable">+</span> Common Geo Location Values</h3>
+            <div class="things" >
+              <p class="commonStuff" onclick='addCommon("vclvalue", "Country Code", "client.geo.country_code")'>Country Code</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "Continent Code", "client.geo.continent_code")'>Continent Code</p>
+              <p class="commonStuff" onclick='addCommon("numberValue", "Latitude", "client.geo.latitude")'>Latitude</p>
+              <p class="commonStuff" onclick='addCommon("numberValue", "Longitude", "client.geo.longitude")'>Longitude</p>
+            </div>
+          </div>
         </div>
       </div>
       <div id="generator">
