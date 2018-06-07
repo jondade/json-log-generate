@@ -38,7 +38,7 @@
         <div class="indent" id="commonTop">
           <div id="commonThings" class="indent">
             <h3 class="commonTitle" onclick="toggle('commonThings')"><span class="expandable">+</span> Commonly Used</h3>
-            <div class="things" id="commonThings">
+            <div class="things">
               <p class="commonStuff" onclick='addCommon("string", "Client IP", "%h")'>Client IP</p>
               <p class="commonStuff" onclick='addCommon("string", "Request", "%m")'>Request Method</p>
               <p class="commonStuff" onclick='addCommon("reqheader", "Host", "Fastly-Orig-Host")'>Host</p>
@@ -47,13 +47,34 @@
           </div>
           <div id="commonCaching" class="indent">
             <h3 class="commonTitle" onclick="toggle('commonCaching')"><span class="expandable">+</span> Common Cache Values</h3>
-            <div class="things" >
+            <div class="things">
               <p class="commonStuff" onclick='addCommon("vclvalue", "Cache Status", "regsub(fastly_info.state, \"^(HIT-(SYNTH)|(HITPASS|HIT|MISS|PASS|ERROR|PIPE)).*\", \"\\\\2\\\\3\")")'>Cache Status</p>
               <p class="commonStuff" onclick='addCommon("respheader", "Cache-control", "Cache-control")'>Cache Control</p>
               <p class="commonStuff" onclick='addCommon("respheader", "Age", "Age")'>Age</p>
               <p class="commonStuff" onclick='addCommon("respheader", "Cache Hits", "X-Cache-Hits")'>Cache Hits</p>
             </div>
           </div>
+          <div id="commonGeoIP" class="indent">
+            <h3 class="commonTitle" onclick="toggle('commonGeoIP')"><span class="expandable">+</span> Common Geo Location Variables</h3>
+            <div class="things">
+              <p class="commonStuff" onclick='addCommon("number", "Latitude", "%{client.geo.latitude}V")'>Latitude</p>
+              <p class="commonStuff" onclick='addCommon("number", "Longitude", "%{client.geo.longitude}V")'>Longitude</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "City", "client.geo.city")'>City</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "Country Code", "client.geo.country_code")'>Country Code</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "Region", "client.geo.region")'>Region</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "AS number", "client.as.number")'>AS Number</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "AS name", "client.as.name")'>AS Name</p>
+            </div>
+          </div>
+          <!-- <div id="change this" class="indent">
+            <h3 class="commonTitle" onclick="toggle('commonThings')"><span class="expandable">+</span> Change This</h3>
+            <div class="things">
+              <p class="commonStuff" onclick='addCommon("string", "Client IP", "%h")'>Client IP</p>
+              <p class="commonStuff" onclick='addCommon("string", "Request", "%m")'>Request Method</p>
+              <p class="commonStuff" onclick='addCommon("reqheader", "Host", "Fastly-Orig-Host")'>Host</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "TLS", "if(req.is_ssl, \"true\", \"false\")")'>Request is TLS</p>
+            </div>
+          </div> -->
         </div>
       </div>
       <div id="generator">
