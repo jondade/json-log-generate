@@ -42,6 +42,7 @@
               <p class="commonStuff" onclick='addCommon("string", "Client IP", "%h")'>Client IP</p>
               <p class="commonStuff" onclick='addCommon("string", "Request", "%m")'>Request Method</p>
               <p class="commonStuff" onclick='addCommon("reqheader", "Host", "Fastly-Orig-Host")'>Host</p>
+              <p class="commonStuff" onclick='addCommon("reqheader", "URL", "url")'>URL</p>
               <p class="commonStuff" onclick='addCommon("vclvalue", "TLS", "if(req.is_ssl, \"true\", \"false\")")'>Request is TLS</p>
             </div>
           </div>
@@ -64,6 +65,29 @@
               <p class="commonStuff" onclick='addCommon("vclvalue", "Region", "client.geo.region")'>Region</p>
               <p class="commonStuff" onclick='addCommon("vclvalue", "AS number", "client.as.number")'>AS Number</p>
               <p class="commonStuff" onclick='addCommon("vclvalue", "AS name", "client.as.name")'>AS Name</p>
+            </div>
+          </div>
+          <div id="commonWAF" class="indent">
+            <h3 class="commonTitle" onclick="toggle('commonWAF')"><span class="expandable">+</span> Common WAF variables</h3>
+            <div class="things">
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF logged", "waf.logged")'>WAF Logged</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF blocked", "waf.blocked")'>WAF Blocked</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF failures", "waf.failures")'>WAF Failures</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF rule ID", "waf.rule_id")'>WAF Rule ID</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF severity", "waf.severity")'>WAF Severity</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF passed", "waf.passed")'>WAF Passed</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF log data", "cstr_escape(waf.logdata)")'>WAF Log Data</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF message", "cstr_escape(waf.message)")'>WAF Message</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF executed", "waf.executed")'>WAF Executed</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF anomaly score", "waf.anomoly_score")'>WAF Anomaly Score</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF SQL score", "waf.sql_injection_score")'>WAF SQL Injection Score</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF RFI score", "waf.rfi_score")'>WAF RFI Score</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF LFI score", "waf.lfi_score")'>WAF LFI Score</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF XSS score", "waf.xss_score")'>WAF XSS Score</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF HTTP score", "waf.http_violation_score")'>WAF HTTP Violation Score</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF RCE score", "waf.rce_score")'>WAF RCE Score</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF PHP score", "waf.php_injection_score")'>WAF PHP Injection Score</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF session fixation score", "waf.session_fixation_score")'>WAF Session Fixation Score</p>
             </div>
           </div>
           <!-- <div id="change this" class="indent">

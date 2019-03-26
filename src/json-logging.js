@@ -212,3 +212,4 @@ function getStyleValue(element, property) {
   var style = window.getComputedStyle(element);
   return style.getPropertyValue(property);
 }
+
