@@ -16,7 +16,7 @@
 	    </div>
       <div id="form">
         <h2 class="label">Configure</h2>
-        <p class="indent">My logging provider is 
+        <p class="indent">My logging provider is
           <select id="provider" onchange="updateProvider()">
             <!-- <option value="bad"></option> -->
             <option value="sumologic">Sumologic</option>
@@ -24,12 +24,13 @@
 <!--            <option value="bigquery">BigQuery</option>  -->
             <option value="other">Other</option>
           </select>
-        <!-- and I am configuring using 
+        and I am configuring using
           <select id="method" onchange="updateMethod()">
-            <option value="bad"></option>
+            <!-- <option value="bad"></option> -->
             <option value="UI">the web interface.</option>
-            <option value="API">API automation.</option>
-          </select> -->
+            <!-- <option value="API">API automation.</option> -->
+            <option value="VCL">raw VCL</option>
+          </select>
         </p>
       </div>
       <div id="standard-fields">
@@ -70,24 +71,24 @@
           <div id="commonWAF" class="indent">
             <h3 class="commonTitle" onclick="toggle('commonWAF')"><span class="expandable">+</span> Common WAF variables</h3>
             <div class="things">
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF logged", "waf.logged")'>WAF Logged</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF blocked", "waf.blocked")'>WAF Blocked</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF failures", "waf.failures")'>WAF Failures</p>
+              <p class="commonStuff" onclick='addCommon("boolean", "WAF logged", "waf.logged")'>WAF Logged</p>
+              <p class="commonStuff" onclick='addCommon("boolean", "WAF blocked", "waf.blocked")'>WAF Blocked</p>
+              <p class="commonStuff" onclick='addCommon("boolean", "WAF failures", "waf.failures")'>WAF Failures</p>
               <p class="commonStuff" onclick='addCommon("vclvalue", "WAF rule ID", "waf.rule_id")'>WAF Rule ID</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF severity", "waf.severity")'>WAF Severity</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF passed", "waf.passed")'>WAF Passed</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF log data", "cstr_escape(waf.logdata)")'>WAF Log Data</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF message", "cstr_escape(waf.message)")'>WAF Message</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF executed", "waf.executed")'>WAF Executed</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF anomaly score", "waf.anomoly_score")'>WAF Anomaly Score</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF SQL score", "waf.sql_injection_score")'>WAF SQL Injection Score</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF RFI score", "waf.rfi_score")'>WAF RFI Score</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF LFI score", "waf.lfi_score")'>WAF LFI Score</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF XSS score", "waf.xss_score")'>WAF XSS Score</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF HTTP score", "waf.http_violation_score")'>WAF HTTP Violation Score</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF RCE score", "waf.rce_score")'>WAF RCE Score</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF PHP score", "waf.php_injection_score")'>WAF PHP Injection Score</p>
-              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF session fixation score", "waf.session_fixation_score")'>WAF Session Fixation Score</p>
+              <p class="commonStuff" onclick='addCommon("number", "WAF severity", "%{if(waf.severity < 99, waf.severity, \"null\")}V")'>WAF Severity</p>
+              <p class="commonStuff" onclick='addCommon("boolean", "WAF passed", "waf.passed")'>WAF Passed</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF log data", "waf.logdata")'>WAF Log Data</p>
+              <p class="commonStuff" onclick='addCommon("vclvalue", "WAF message", "waf.message")'>WAF Message</p>
+              <p class="commonStuff" onclick='addCommon("boolean", "WAF executed", "waf.executed")'>WAF Executed</p>
+              <p class="commonStuff" onclick='addCommon("number", "WAF anomaly score", "waf.anomoly_score")'>WAF Anomaly Score</p>
+              <p class="commonStuff" onclick='addCommon("number", "WAF SQL score", "waf.sql_injection_score")'>WAF SQL Injection Score</p>
+              <p class="commonStuff" onclick='addCommon("number", "WAF RFI score", "waf.rfi_score")'>WAF RFI Score</p>
+              <p class="commonStuff" onclick='addCommon("number", "WAF LFI score", "waf.lfi_score")'>WAF LFI Score</p>
+              <p class="commonStuff" onclick='addCommon("number", "WAF XSS score", "waf.xss_score")'>WAF XSS Score</p>
+              <p class="commonStuff" onclick='addCommon("number", "WAF HTTP score", "waf.http_violation_score")'>WAF HTTP Violation Score</p>
+              <p class="commonStuff" onclick='addCommon("number", "WAF RCE score", "waf.rce_score")'>WAF RCE Score</p>
+              <p class="commonStuff" onclick='addCommon("number", "WAF PHP score", "waf.php_injection_score")'>WAF PHP Injection Score</p>
+              <p class="commonStuff" onclick='addCommon("number", "WAF session fixation score", "waf.session_fixation_score")'>WAF Session Fixation Score</p>
             </div>
           </div>
           <!-- <div id="change this" class="indent">
@@ -105,18 +106,19 @@
         <h2 class="label">Create Custom Fields</h2>
         <div class="helpMark" onclick="showHelp('helps')">?</div>
         <p class="indent" id="helps">Use this section to add fields that aren't pre-defined. The types dropdown correspond to how they will present inside the JSON. The &quot;identified by&quot; input is for the name of the value or &quot;key&quot; and the &quot;value is&quot; input is either a literal value, or the VCL to get the value.</p>
-        <p class="indent">I want to add a 
+        <p class="indent">I want to add a
           <select id="type" onchange="updateType()">
             <option value="reqheader">request header</option>
             <option value="respheader">response header</option>
             <option value="number">number</option>
             <option value="vclvalue">VCL generated value</option>
             <option value="time">Time</option>
-            <option value="cookie">Cookie</option>
+            <option value="cookie">cookie</option>
             <option value="string">string</option>
+            <option value="boolean">boolean</option>
           </select>
-          identified by 
-          <input type="text" id="name"> . Its value is 
+          identified by
+          <input type="text" id="name"> . Its value is
           <input type="text" id="source">.
           <button id="addValue" onclick="addValue()">Add</button>
         </p>
@@ -134,6 +136,6 @@
       </div>
 	  </div>
     <p id="disclaim">Source code and contributions available at <a href="https://github.com/jondade/json-log-generate" target="_blank">https://github.com/jondade/json-log-generate</a></p>
-    <p id="disclaim">Copyright Jonathan Dade 2017. No cookies in use on this site. Use site entirely at own risk.</p>
+    <p id="disclaim">Copyright Jonathan Dade 2017-2019. No cookies in use on this site. Use site entirely at own risk.</p>
   </body>
 </html>

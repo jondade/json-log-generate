@@ -14,9 +14,10 @@ var numberData = {name: 'numberData', start:'', end:''};
 var stringData = {name: 'stringData', start: '"', end:'"'};
 var reqHeader = {name: 'reqHeader', start: '"%{', end:'}i"'};
 var respHeader = {name: 'respHeader', start: '"%{', end: '}o"'};
-var vclData = {name: 'vclData', start: '"%{', end: '}V"'};
+var vclData = {name: 'vclData', start: '"%{json.escape(', end: ')}V"'};
 var timeData = {name: 'timeData', start: '"%{', end: '}t"'};
 var cookieData = {name: 'cookieData', start: '"%{', end: '}C"'};
+var booleanData = {name: 'booleanData', start: '"%{if((', end: '), true, false)}V'}
 
 // Set basics up on page load
 function init() {
@@ -93,7 +94,7 @@ function updateProvider(){
     case "bad":
       alert("Bad choice. Try again.");
 
-  } 
+  }
 
   updateGenerated();
 }
@@ -113,7 +114,7 @@ function updateMethod(){
     default:
       method = "UI";
       alert("Falling back to UI formatting");
-  } 
+  }
 
   updateGenerated();
 }
@@ -144,6 +145,9 @@ function updateType(newType) {
       break;
     case "cookie":
       type = cookieData;
+      break;
+    case "boolean":
+      type = booleanData;
       break;
   }
 }
@@ -212,4 +216,3 @@ function getStyleValue(element, property) {
   var style = window.getComputedStyle(element);
   return style.getPropertyValue(property);
 }
-
