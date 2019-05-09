@@ -19,12 +19,15 @@ var timeData = {name: 'timeData', start: '"%{', end: '}t"'};
 var cookieData = {name: 'cookieData', start: '"%{', end: '}C"'};
 var booleanData = {name: 'booleanData', start: '"%{if((', end: '), true, false)}V'}
 
+var methods = [{name: 'UI'},
+               {name: 'API'},
+               {name: 'RAW'}];
+
 // Set basics up on page load
 function init() {
   updateProvider();
-  // updateMethod();
+  updateMethod();
   updateType();
-  method = "UI";
 }
 
 // Clear out the fields
@@ -36,7 +39,6 @@ function reset() {
 // spit out the data for use
 function updateGenerated(){
   out = '<span class="gen">'+ provider.start + '</span>';
-  //out = out + jsonParts.join('<span class="separator">, </span>');
   out = out + buildInnerJson();
   out = out + '<span class="gen">' + provider.end + '</span>';
   document.getElementById("generated").innerHTML = out;
@@ -95,7 +97,6 @@ function updateProvider(){
       alert("Bad choice. Try again.");
 
   }
-
   updateGenerated();
 }
 
@@ -108,6 +109,9 @@ function updateMethod(){
     case "UI":
       method = "UI";
       break;
+    case "VCL":
+      method = "VCL";
+      break;
     case "API":
       method = "API";
       break;
@@ -115,7 +119,6 @@ function updateMethod(){
       method = "UI";
       alert("Falling back to UI formatting");
   }
-
   updateGenerated();
 }
 

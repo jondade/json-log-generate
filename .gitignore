@@ -1,5 +1,4 @@
 *sublime*
 .git
-.DS_Store
-tools/doc/*
-.yardoc/*
+*tfstate*
+.terraform
