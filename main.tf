@@ -20,10 +20,10 @@ provider "fastly" {
 }
 
 resource "fastly_service_v1" "json-generate" {
-  name = "json-generate"
+  name = "json-generate${terraform.workspace == "test" ? "-test" : ""}"
 
   domain {
-    name    = "json-generator.global.ssl.fastly.net"
+    name    = "json-generator${terraform.workspace == "test" ? "-test": ""}.global.ssl.fastly.net"
   }
 
   backend {
@@ -69,7 +69,7 @@ resource "fastly_service_v1" "json-generate" {
     name = "Stylesheet"
     content = "${data.local_file.stylesheet.content}"
     content_type = "text/css"
-    request_condition = "Stylesheet "
+    request_condition = "Stylesheet"
   }
 
   response_object {
