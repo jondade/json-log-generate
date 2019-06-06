@@ -13,7 +13,6 @@ data "local_file" "javascript" {
     filename = "${path.module}/src/json-logging.js"
 }
 
-
 # Add the Fastly provider
 provider "fastly" {
   api_key = "${var.fastly_key}"

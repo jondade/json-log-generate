@@ -8,6 +8,7 @@ var type = reqHeader;
 var splunk = { name:'splunk', start:'{ "time": %{now.sec}V, "host":"fastly-%{req.service_id}V", "sourcetype":"_json", "event": { ', end:' } }' };
 var sumologic = { name: 'sumologic', start:'{ ',end:' } '};
 var jsonPlain = { name: 'jsonPlain', start:'{ ',end:' } '};
+var bigquery = { name: 'bigQuery', start:'{ ', end:' } '};
 
 // value types
 var numberData = {name: 'numberData', start:'', end:''};
@@ -88,7 +89,7 @@ function updateProvider(){
       provider = sumologic;
       break;
     case "bigquery":
-      provider = "bigquery";
+      provider = bigquery;
       break;
     case "other":
       provider = jsonPlain;
